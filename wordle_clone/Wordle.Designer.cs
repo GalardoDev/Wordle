@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Wordle));
             this.checkButton = new Guna.UI2.WinForms.Guna2Button();
             this.resetButton = new Guna.UI2.WinForms.Guna2Button();
             this.rowOneLetterOne = new System.Windows.Forms.TextBox();
@@ -55,12 +56,17 @@
             this.rowFiveLetterThree = new System.Windows.Forms.TextBox();
             this.rowFiveLetterTwo = new System.Windows.Forms.TextBox();
             this.rowFiveLetterOne = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // checkButton
             // 
+            this.checkButton.BorderColor = System.Drawing.Color.Beige;
             this.checkButton.BorderRadius = 5;
+            this.checkButton.BorderThickness = 1;
             this.checkButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.checkButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.checkButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -77,7 +83,9 @@
             // 
             // resetButton
             // 
+            this.resetButton.BorderColor = System.Drawing.Color.BlanchedAlmond;
             this.resetButton.BorderRadius = 5;
+            this.resetButton.BorderThickness = 1;
             this.resetButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.resetButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.resetButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -392,23 +400,45 @@
             this.rowFiveLetterOne.Tag = "rowFive";
             this.rowFiveLetterOne.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(143, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 58);
-            this.label1.TabIndex = 37;
-            this.label1.Text = "Wordle\r\nClone\r\n";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Location = new System.Drawing.Point(344, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(29, 23);
+            this.button1.TabIndex = 38;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(175, 356);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 39;
+            this.label2.Text = "label2";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(156, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(75, 75);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 40;
+            this.pictureBox1.TabStop = false;
             // 
             // Wordle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Chocolate;
             this.ClientSize = new System.Drawing.Size(385, 563);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.rowFiveLetterFive);
             this.Controls.Add(this.rowFiveLetterFour);
             this.Controls.Add(this.rowFiveLetterThree);
@@ -437,10 +467,12 @@
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.checkButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Wordle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Wordle";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,7 +506,9 @@
         private System.Windows.Forms.TextBox rowFiveLetterThree;
         private System.Windows.Forms.TextBox rowFiveLetterTwo;
         private System.Windows.Forms.TextBox rowFiveLetterOne;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

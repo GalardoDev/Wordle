@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace wordle_clone
 {
     public partial class Wordle : Form
     {
+
         int currentRow = 1;
 
         string[] words = {"Music", "House", "Horse"};
@@ -44,12 +46,14 @@ namespace wordle_clone
             GenerateWord();
             UnlockRow();
 
-        }
+            label2.Text = correctWord.ToString();
+ 
 
+        }
         private void GenerateWord()
         {
             Random randomWord = new Random();
-            correctWord = words[randomWord.Next(0, words.Length)];
+            correctWord = words[randomWord.Next(0, words.Length)].ToUpper();
         }
 
         private void UnlockRow()
@@ -85,8 +89,6 @@ namespace wordle_clone
                         TargetRow("rowFive");
                         break;
                     }
-
-
             }
         }
 
@@ -108,62 +110,69 @@ namespace wordle_clone
             }
         }
 
+        private void ConvertToUppercase()
+        {
+            foreach(Control control in this.Controls)
+            {
+                if(control is TextBox)
+                {
+                    ((TextBox)control).Text.ToUpper();
+                }
+            }
+        }
+
+        private void AssignCharactersToWord(List<TextBox> targetTextBox)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                guessedWord += targetTextBox[i].Text.ToString();
+            }
+        }
+
         private string GetGuessedWord()
         {
             switch(currentRow)
             {
                 case 1:
-                    {
-                        //guessedWord = String.Concat(rowOneLetterOne.Text + rowOneLetterTwo.Text + rowOneLetterThree.Text + rowOneLetterFour.Text + rowOneLetterFive.Text);
-
-                        for (int i = 0; i < 5; i++)
-                        {
-                            guessedWord += rowOneTextBoxes[i].Text.ToString();
-                        }
+                    {   
+                        AssignCharactersToWord(rowOneTextBoxes);
                         break;
                     }
 
                 case 2:
                     {
-                        //guessedWord = String.Concat(rowTwoLetterOne.Text + rowTwoLetterTwo.Text + rowTwoLetterThree.Text + rowTwoLetterFour.Text + rowTwoLetterFive.Text);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            guessedWord += rowTwoTextBoxes[i].Text.ToString();
-                        }
+                        AssignCharactersToWord(rowOneTextBoxes);
                         break;
                     }
 
                 case 3:
                     {
-                        //guessedWord = String.Concat(rowThreeLetterOne.Text + rowThreeLetterTwo.Text + rowThreeLetterThree.Text + rowThreeLetterFour.Text + rowThreeLetterFive.Text);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            guessedWord += rowThreeTextBoxes[i].Text.ToString();
-                        }
+                        AssignCharactersToWord(rowOneTextBoxes);
                         break;
                     }
 
                 case 4:
                     {
-                        //guessedWord = String.Concat(rowFourLetterOne.Text + rowFourLetterTwo.Text + rowFourLetterThree.Text + rowFourLetterFour.Text + rowFourLetterFive.Text);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            guessedWord += rowFourTextBoxes[i].Text.ToString();
-                        }
+                        AssignCharactersToWord(rowOneTextBoxes);
                         break;
                     }
 
                 case 5:
                     {
-                        //guessedWord = String.Concat(rowFiveLetterOne.Text + rowFiveLetterTwo.Text + rowFiveLetterThree.Text + rowFiveLetterFour.Text + rowFiveLetterFive.Text);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            guessedWord += rowFiveTextBoxes[i].Text.ToString();
-                        }
+                        AssignCharactersToWord(rowOneTextBoxes);
                         break;
                     }
             }
             return guessedWord;
+        }
+
+        private void TargetTextBox(List<TextBox> targetTextBox)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (correctWord.Contains(targetTextBox[i].Text) && targetTextBox[i].Text != correctWord[i].ToString())
+                    targetTextBox[i].BackColor = Color.FromArgb(255, 179, 64);
+            }
         }
 
         private void CheckIncorrectCharacters()
@@ -172,43 +181,42 @@ namespace wordle_clone
             {
                 case 1:
                     {
-                        if (correctWord.Contains(rowOneLetterOne.Text) && rowOneLetterOne.Text != correctWord[0].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
-                        if (correctWord.Contains(rowOneLetterTwo.Text) && rowOneLetterTwo.Text != correctWord[1].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
-                        if (correctWord.Contains(rowOneLetterThree.Text) && rowOneLetterThree.Text != correctWord[1].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
-                        if (correctWord.Contains(rowOneLetterFour.Text) && rowOneLetterFour.Text != correctWord[1].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
-                        if (correctWord.Contains(rowOneLetterFive.Text) && rowOneLetterFive.Text != correctWord[1].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
+                        TargetTextBox(rowOneTextBoxes);
                         break;
                     }
 
                 case 2:
                     {
-                        if (correctWord.Contains(rowTwoLetterOne.Text) && rowTwoLetterOne.Text != correctWord[0].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
-                        if (correctWord.Contains(rowTwoLetterTwo.Text) && rowTwoLetterTwo.Text != correctWord[1].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
-                        if (correctWord.Contains(rowTwoLetterThree.Text) && rowTwoLetterThree.Text != correctWord[1].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
-                        if (correctWord.Contains(rowTwoLetterFour.Text) && rowTwoLetterFour.Text != correctWord[1].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
-                        if (correctWord.Contains(rowTwoLetterFive.Text) && rowTwoLetterFive.Text != correctWord[1].ToString())
-                            rowOneLetterOne.BackColor = Color.FromArgb(255, 179, 64);
-
+                        TargetTextBox(rowTwoTextBoxes);
                         break;
                     }
+
+                case 3:
+                    {
+                        TargetTextBox(rowThreeTextBoxes);
+                        break;
+                    }
+
+                case 4:
+                    {
+                        TargetTextBox(rowFourTextBoxes);
+                        break;
+                    }
+
+                case 5:
+                    {
+                        TargetTextBox(rowFiveTextBoxes);
+                        break;
+                    }
+            }
+        }
+
+        private void TargetValidTextBox(List<TextBox> targetTextBox)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (targetTextBox[i].Text == correctWord[i].ToString())
+                    targetTextBox[i].BackColor = Color.Green;
             }
         }
 
@@ -218,51 +226,31 @@ namespace wordle_clone
             {
                 case 1:
                     {
-                        for(int i = 0; i < 5; i++)
-                        {
-                            if (rowOneTextBoxes[i].Text == correctWord[i].ToString())
-                                rowOneTextBoxes[i].BackColor = Color.Green;
-                        }
+                        TargetValidTextBox(rowOneTextBoxes);
                         break;
                     }
 
                 case 2:
                     {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            if (rowTwoTextBoxes[i].Text == correctWord[i].ToString())
-                                rowTwoTextBoxes[i].BackColor = Color.Green;
-                        }
+                        TargetValidTextBox(rowTwoTextBoxes);
                         break;
                     }
 
                 case 3:
                     {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            if (rowThreeTextBoxes[i].Text == correctWord[i].ToString())
-                                rowThreeTextBoxes[i].BackColor = Color.Green;
-                        }
+                        TargetValidTextBox(rowThreeTextBoxes);
                         break;
                     }
 
                 case 4:
                     {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            if (rowFourTextBoxes[i].Text == correctWord[i].ToString())
-                                rowFourTextBoxes[i].BackColor = Color.Green;
-                        }
+                        TargetValidTextBox(rowFourTextBoxes);
                         break;
                     }
 
                 case 5:
                     {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            if (rowFiveTextBoxes[i].Text == correctWord[i].ToString())
-                                rowFiveTextBoxes[i].BackColor = Color.Green;
-                        }
+                        TargetValidTextBox(rowFiveTextBoxes);
                         break;
                     }
             }
@@ -279,36 +267,27 @@ namespace wordle_clone
 
             else
             {
+                if (currentRow >= 1 && currentRow <= 5)
+                {
+                    ConvertToUppercase();
+                    CheckIncorrectCharacters();
+                    CheckValidCharacters();
+                }
+
+                guessedWord = String.Empty;
+
+                if (correctWord == GetGuessedWord())
+                {
+                    MessageBox.Show("You got it correctly!");
+                    return;
+                }
+
                 guessedWord = String.Empty;
                 currentRow++;
                 UnlockRow();
             }
 
-            if(currentRow >= 1 && currentRow <= 5)
-            {
-                CheckIncorrectCharacters();
-                CheckValidCharacters();
-            }
-
-            if (correctWord == GetGuessedWord())
-            {
-                MessageBox.Show("You got it correctly!");
-                return;
-            }
         }
-
-        /*private void Wordle_TextChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("textchanged func called");
-
-            foreach(Control control in this.Controls)
-            {
-                if(control is TextBox)
-                {
-                    ((TextBox)control).Text.ToUpper();
-                }
-            }
-        }*/
 
         private void AddRowsToList()
         {
@@ -351,6 +330,11 @@ namespace wordle_clone
             rowFiveTextBoxes.Add(rowFiveLetterThree);
             rowFiveTextBoxes.Add(rowFiveLetterFour);
             rowFiveTextBoxes.Add(rowFiveLetterFive);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
