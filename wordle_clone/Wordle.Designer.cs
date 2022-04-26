@@ -56,14 +56,20 @@
             this.rowFiveLetterThree = new System.Windows.Forms.TextBox();
             this.rowFiveLetterTwo = new System.Windows.Forms.TextBox();
             this.rowFiveLetterOne = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.shapeTopPictureBox = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.mainCenterPictureBox = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.alertPanel = new System.Windows.Forms.Panel();
+            this.alertPictureBox = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.alertLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.shapeTopPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainCenterPictureBox)).BeginInit();
+            this.alertPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.alertPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // checkButton
             // 
+            this.checkButton.BackColor = System.Drawing.Color.Transparent;
             this.checkButton.BorderColor = System.Drawing.Color.Beige;
             this.checkButton.BorderRadius = 5;
             this.checkButton.BorderThickness = 1;
@@ -71,12 +77,12 @@
             this.checkButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.checkButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.checkButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.checkButton.FillColor = System.Drawing.SystemColors.MenuHighlight;
+            this.checkButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(65)))), ((int)(((byte)(113)))));
             this.checkButton.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.checkButton.ForeColor = System.Drawing.Color.White;
-            this.checkButton.Location = new System.Drawing.Point(84, 391);
+            this.checkButton.Location = new System.Drawing.Point(70, 391);
             this.checkButton.Name = "checkButton";
-            this.checkButton.Size = new System.Drawing.Size(101, 42);
+            this.checkButton.Size = new System.Drawing.Size(242, 42);
             this.checkButton.TabIndex = 10;
             this.checkButton.Text = "Check Word";
             this.checkButton.Click += new System.EventHandler(this.checkButton_Click);
@@ -93,17 +99,19 @@
             this.resetButton.FillColor = System.Drawing.Color.Crimson;
             this.resetButton.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.resetButton.ForeColor = System.Drawing.Color.White;
-            this.resetButton.Location = new System.Drawing.Point(197, 391);
+            this.resetButton.Location = new System.Drawing.Point(70, 439);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(101, 42);
+            this.resetButton.Size = new System.Drawing.Size(242, 42);
             this.resetButton.TabIndex = 11;
             this.resetButton.Text = "Reset";
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // rowOneLetterOne
             // 
             this.rowOneLetterOne.BackColor = System.Drawing.SystemColors.Window;
             this.rowOneLetterOne.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowOneLetterOne.Location = new System.Drawing.Point(84, 108);
+            this.rowOneLetterOne.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.rowOneLetterOne.Location = new System.Drawing.Point(84, 133);
             this.rowOneLetterOne.MaxLength = 1;
             this.rowOneLetterOne.Multiline = true;
             this.rowOneLetterOne.Name = "rowOneLetterOne";
@@ -115,7 +123,7 @@
             // rowOneLetterTwo
             // 
             this.rowOneLetterTwo.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowOneLetterTwo.Location = new System.Drawing.Point(128, 108);
+            this.rowOneLetterTwo.Location = new System.Drawing.Point(128, 133);
             this.rowOneLetterTwo.MaxLength = 1;
             this.rowOneLetterTwo.Multiline = true;
             this.rowOneLetterTwo.Name = "rowOneLetterTwo";
@@ -127,7 +135,7 @@
             // rowOneLetterThree
             // 
             this.rowOneLetterThree.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowOneLetterThree.Location = new System.Drawing.Point(172, 108);
+            this.rowOneLetterThree.Location = new System.Drawing.Point(172, 133);
             this.rowOneLetterThree.MaxLength = 1;
             this.rowOneLetterThree.Multiline = true;
             this.rowOneLetterThree.Name = "rowOneLetterThree";
@@ -139,7 +147,7 @@
             // rowOneLetterFour
             // 
             this.rowOneLetterFour.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowOneLetterFour.Location = new System.Drawing.Point(216, 108);
+            this.rowOneLetterFour.Location = new System.Drawing.Point(216, 133);
             this.rowOneLetterFour.MaxLength = 1;
             this.rowOneLetterFour.Multiline = true;
             this.rowOneLetterFour.Name = "rowOneLetterFour";
@@ -151,7 +159,7 @@
             // rowOneLetterFive
             // 
             this.rowOneLetterFive.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowOneLetterFive.Location = new System.Drawing.Point(260, 108);
+            this.rowOneLetterFive.Location = new System.Drawing.Point(260, 133);
             this.rowOneLetterFive.MaxLength = 1;
             this.rowOneLetterFive.Multiline = true;
             this.rowOneLetterFive.Name = "rowOneLetterFive";
@@ -163,7 +171,7 @@
             // rowTwoLetterFive
             // 
             this.rowTwoLetterFive.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowTwoLetterFive.Location = new System.Drawing.Point(260, 152);
+            this.rowTwoLetterFive.Location = new System.Drawing.Point(260, 177);
             this.rowTwoLetterFive.MaxLength = 1;
             this.rowTwoLetterFive.Multiline = true;
             this.rowTwoLetterFive.Name = "rowTwoLetterFive";
@@ -175,7 +183,7 @@
             // rowTwoLetterFour
             // 
             this.rowTwoLetterFour.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowTwoLetterFour.Location = new System.Drawing.Point(216, 152);
+            this.rowTwoLetterFour.Location = new System.Drawing.Point(216, 177);
             this.rowTwoLetterFour.MaxLength = 1;
             this.rowTwoLetterFour.Multiline = true;
             this.rowTwoLetterFour.Name = "rowTwoLetterFour";
@@ -187,7 +195,7 @@
             // rowTwoLetterThree
             // 
             this.rowTwoLetterThree.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowTwoLetterThree.Location = new System.Drawing.Point(172, 152);
+            this.rowTwoLetterThree.Location = new System.Drawing.Point(172, 177);
             this.rowTwoLetterThree.MaxLength = 1;
             this.rowTwoLetterThree.Multiline = true;
             this.rowTwoLetterThree.Name = "rowTwoLetterThree";
@@ -199,7 +207,7 @@
             // rowTwoLetterTwo
             // 
             this.rowTwoLetterTwo.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowTwoLetterTwo.Location = new System.Drawing.Point(128, 152);
+            this.rowTwoLetterTwo.Location = new System.Drawing.Point(128, 177);
             this.rowTwoLetterTwo.MaxLength = 1;
             this.rowTwoLetterTwo.Multiline = true;
             this.rowTwoLetterTwo.Name = "rowTwoLetterTwo";
@@ -211,7 +219,7 @@
             // rowTwoLetterOne
             // 
             this.rowTwoLetterOne.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowTwoLetterOne.Location = new System.Drawing.Point(84, 152);
+            this.rowTwoLetterOne.Location = new System.Drawing.Point(84, 177);
             this.rowTwoLetterOne.MaxLength = 1;
             this.rowTwoLetterOne.Multiline = true;
             this.rowTwoLetterOne.Name = "rowTwoLetterOne";
@@ -223,7 +231,7 @@
             // rowThreeLetterFive
             // 
             this.rowThreeLetterFive.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowThreeLetterFive.Location = new System.Drawing.Point(260, 196);
+            this.rowThreeLetterFive.Location = new System.Drawing.Point(260, 221);
             this.rowThreeLetterFive.MaxLength = 1;
             this.rowThreeLetterFive.Multiline = true;
             this.rowThreeLetterFive.Name = "rowThreeLetterFive";
@@ -235,7 +243,7 @@
             // rowThreeLetterFour
             // 
             this.rowThreeLetterFour.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowThreeLetterFour.Location = new System.Drawing.Point(216, 196);
+            this.rowThreeLetterFour.Location = new System.Drawing.Point(216, 221);
             this.rowThreeLetterFour.MaxLength = 1;
             this.rowThreeLetterFour.Multiline = true;
             this.rowThreeLetterFour.Name = "rowThreeLetterFour";
@@ -247,7 +255,7 @@
             // rowThreeLetterThree
             // 
             this.rowThreeLetterThree.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowThreeLetterThree.Location = new System.Drawing.Point(172, 196);
+            this.rowThreeLetterThree.Location = new System.Drawing.Point(172, 221);
             this.rowThreeLetterThree.MaxLength = 1;
             this.rowThreeLetterThree.Multiline = true;
             this.rowThreeLetterThree.Name = "rowThreeLetterThree";
@@ -259,7 +267,7 @@
             // rowThreeLetterTwo
             // 
             this.rowThreeLetterTwo.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowThreeLetterTwo.Location = new System.Drawing.Point(128, 196);
+            this.rowThreeLetterTwo.Location = new System.Drawing.Point(128, 221);
             this.rowThreeLetterTwo.MaxLength = 1;
             this.rowThreeLetterTwo.Multiline = true;
             this.rowThreeLetterTwo.Name = "rowThreeLetterTwo";
@@ -271,7 +279,7 @@
             // rowThreeLetterOne
             // 
             this.rowThreeLetterOne.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowThreeLetterOne.Location = new System.Drawing.Point(84, 196);
+            this.rowThreeLetterOne.Location = new System.Drawing.Point(84, 221);
             this.rowThreeLetterOne.MaxLength = 1;
             this.rowThreeLetterOne.Multiline = true;
             this.rowThreeLetterOne.Name = "rowThreeLetterOne";
@@ -283,7 +291,7 @@
             // rowFourLetterFive
             // 
             this.rowFourLetterFive.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFourLetterFive.Location = new System.Drawing.Point(260, 240);
+            this.rowFourLetterFive.Location = new System.Drawing.Point(260, 265);
             this.rowFourLetterFive.MaxLength = 1;
             this.rowFourLetterFive.Multiline = true;
             this.rowFourLetterFive.Name = "rowFourLetterFive";
@@ -295,7 +303,7 @@
             // rowFourLetterFour
             // 
             this.rowFourLetterFour.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFourLetterFour.Location = new System.Drawing.Point(216, 240);
+            this.rowFourLetterFour.Location = new System.Drawing.Point(216, 265);
             this.rowFourLetterFour.MaxLength = 1;
             this.rowFourLetterFour.Multiline = true;
             this.rowFourLetterFour.Name = "rowFourLetterFour";
@@ -307,7 +315,7 @@
             // rowFourLetterThree
             // 
             this.rowFourLetterThree.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFourLetterThree.Location = new System.Drawing.Point(172, 240);
+            this.rowFourLetterThree.Location = new System.Drawing.Point(172, 265);
             this.rowFourLetterThree.MaxLength = 1;
             this.rowFourLetterThree.Multiline = true;
             this.rowFourLetterThree.Name = "rowFourLetterThree";
@@ -319,7 +327,7 @@
             // rowFourLetterTwo
             // 
             this.rowFourLetterTwo.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFourLetterTwo.Location = new System.Drawing.Point(128, 240);
+            this.rowFourLetterTwo.Location = new System.Drawing.Point(128, 265);
             this.rowFourLetterTwo.MaxLength = 1;
             this.rowFourLetterTwo.Multiline = true;
             this.rowFourLetterTwo.Name = "rowFourLetterTwo";
@@ -331,7 +339,7 @@
             // rowFourLetterOne
             // 
             this.rowFourLetterOne.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFourLetterOne.Location = new System.Drawing.Point(84, 240);
+            this.rowFourLetterOne.Location = new System.Drawing.Point(84, 265);
             this.rowFourLetterOne.MaxLength = 1;
             this.rowFourLetterOne.Multiline = true;
             this.rowFourLetterOne.Name = "rowFourLetterOne";
@@ -343,7 +351,7 @@
             // rowFiveLetterFive
             // 
             this.rowFiveLetterFive.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFiveLetterFive.Location = new System.Drawing.Point(260, 284);
+            this.rowFiveLetterFive.Location = new System.Drawing.Point(260, 309);
             this.rowFiveLetterFive.MaxLength = 1;
             this.rowFiveLetterFive.Multiline = true;
             this.rowFiveLetterFive.Name = "rowFiveLetterFive";
@@ -355,7 +363,7 @@
             // rowFiveLetterFour
             // 
             this.rowFiveLetterFour.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFiveLetterFour.Location = new System.Drawing.Point(216, 284);
+            this.rowFiveLetterFour.Location = new System.Drawing.Point(216, 309);
             this.rowFiveLetterFour.MaxLength = 1;
             this.rowFiveLetterFour.Multiline = true;
             this.rowFiveLetterFour.Name = "rowFiveLetterFour";
@@ -367,7 +375,7 @@
             // rowFiveLetterThree
             // 
             this.rowFiveLetterThree.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFiveLetterThree.Location = new System.Drawing.Point(172, 284);
+            this.rowFiveLetterThree.Location = new System.Drawing.Point(172, 309);
             this.rowFiveLetterThree.MaxLength = 1;
             this.rowFiveLetterThree.Multiline = true;
             this.rowFiveLetterThree.Name = "rowFiveLetterThree";
@@ -379,7 +387,7 @@
             // rowFiveLetterTwo
             // 
             this.rowFiveLetterTwo.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFiveLetterTwo.Location = new System.Drawing.Point(128, 284);
+            this.rowFiveLetterTwo.Location = new System.Drawing.Point(128, 309);
             this.rowFiveLetterTwo.MaxLength = 1;
             this.rowFiveLetterTwo.Multiline = true;
             this.rowFiveLetterTwo.Name = "rowFiveLetterTwo";
@@ -391,7 +399,7 @@
             // rowFiveLetterOne
             // 
             this.rowFiveLetterOne.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowFiveLetterOne.Location = new System.Drawing.Point(84, 284);
+            this.rowFiveLetterOne.Location = new System.Drawing.Point(84, 309);
             this.rowFiveLetterOne.MaxLength = 1;
             this.rowFiveLetterOne.Multiline = true;
             this.rowFiveLetterOne.Name = "rowFiveLetterOne";
@@ -400,45 +408,77 @@
             this.rowFiveLetterOne.Tag = "rowFive";
             this.rowFiveLetterOne.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // button1
+            // shapeTopPictureBox
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(344, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(29, 23);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.shapeTopPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.shapeTopPictureBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(65)))), ((int)(((byte)(113)))));
+            this.shapeTopPictureBox.ImageRotate = 0F;
+            this.shapeTopPictureBox.Location = new System.Drawing.Point(-198, -128);
+            this.shapeTopPictureBox.Name = "shapeTopPictureBox";
+            this.shapeTopPictureBox.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.shapeTopPictureBox.Size = new System.Drawing.Size(940, 371);
+            this.shapeTopPictureBox.TabIndex = 41;
+            this.shapeTopPictureBox.TabStop = false;
             // 
-            // label2
+            // mainCenterPictureBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(175, 356);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 39;
-            this.label2.Text = "label2";
+            this.mainCenterPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.mainCenterPictureBox.BorderRadius = 7;
+            this.mainCenterPictureBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(250)))), ((int)(((byte)(254)))));
+            this.mainCenterPictureBox.ImageRotate = 0F;
+            this.mainCenterPictureBox.Location = new System.Drawing.Point(70, 102);
+            this.mainCenterPictureBox.Name = "mainCenterPictureBox";
+            this.mainCenterPictureBox.ShadowDecoration.BorderRadius = 7;
+            this.mainCenterPictureBox.ShadowDecoration.Depth = 10;
+            this.mainCenterPictureBox.ShadowDecoration.Enabled = true;
+            this.mainCenterPictureBox.Size = new System.Drawing.Size(242, 269);
+            this.mainCenterPictureBox.TabIndex = 42;
+            this.mainCenterPictureBox.TabStop = false;
+            this.mainCenterPictureBox.UseTransparentBackground = true;
             // 
-            // pictureBox1
+            // alertPanel
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(156, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(75, 75);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 40;
-            this.pictureBox1.TabStop = false;
+            this.alertPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(65)))), ((int)(((byte)(113)))));
+            this.alertPanel.Controls.Add(this.alertLabel);
+            this.alertPanel.Controls.Add(this.alertPictureBox);
+            this.alertPanel.Location = new System.Drawing.Point(49, 31);
+            this.alertPanel.Name = "alertPanel";
+            this.alertPanel.Size = new System.Drawing.Size(263, 49);
+            this.alertPanel.TabIndex = 43;
+            // 
+            // alertPictureBox
+            // 
+            this.alertPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.alertPictureBox.BorderRadius = 5;
+            this.alertPictureBox.FillColor = System.Drawing.Color.Crimson;
+            this.alertPictureBox.ImageRotate = 0F;
+            this.alertPictureBox.Location = new System.Drawing.Point(21, 10);
+            this.alertPictureBox.Name = "alertPictureBox";
+            this.alertPictureBox.Size = new System.Drawing.Size(242, 36);
+            this.alertPictureBox.TabIndex = 0;
+            this.alertPictureBox.TabStop = false;
+            this.alertPictureBox.UseTransparentBackground = true;
+            // 
+            // alertLabel
+            // 
+            this.alertLabel.AutoSize = true;
+            this.alertLabel.BackColor = System.Drawing.Color.Crimson;
+            this.alertLabel.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alertLabel.ForeColor = System.Drawing.Color.White;
+            this.alertLabel.Location = new System.Drawing.Point(34, 20);
+            this.alertLabel.Name = "alertLabel";
+            this.alertLabel.Size = new System.Drawing.Size(217, 16);
+            this.alertLabel.TabIndex = 1;
+            this.alertLabel.Text = "Word does not exist in our database!";
+            this.alertLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Wordle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Chocolate;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(250)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(385, 563);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.alertPanel);
             this.Controls.Add(this.rowFiveLetterFive);
             this.Controls.Add(this.rowFiveLetterFour);
             this.Controls.Add(this.rowFiveLetterThree);
@@ -466,13 +506,19 @@
             this.Controls.Add(this.rowOneLetterOne);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.checkButton);
+            this.Controls.Add(this.mainCenterPictureBox);
+            this.Controls.Add(this.shapeTopPictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Wordle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wordle";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shapeTopPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainCenterPictureBox)).EndInit();
+            this.alertPanel.ResumeLayout(false);
+            this.alertPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.alertPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,9 +552,11 @@
         private System.Windows.Forms.TextBox rowFiveLetterThree;
         private System.Windows.Forms.TextBox rowFiveLetterTwo;
         private System.Windows.Forms.TextBox rowFiveLetterOne;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox shapeTopPictureBox;
+        private Guna.UI2.WinForms.Guna2PictureBox mainCenterPictureBox;
+        private System.Windows.Forms.Panel alertPanel;
+        private Guna.UI2.WinForms.Guna2PictureBox alertPictureBox;
+        private System.Windows.Forms.Label alertLabel;
     }
 }
 

@@ -6,26 +6,34 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace wordle_clone
 {
+
     public partial class Wordle : Form
     {
-
         int currentRow = 1;
 
-        string[] words = {"Music", "House", "Horse"};
+        string[] words = {
+            "Music", 
+            "House", 
+            "Horse"
+        };
 
-        string correctWord = "";
-        string guessedWord = "";
+        string correctWord = String.Empty;
+        string guessedWord = String.Empty;
 
         List<TextBox> rowOneTextBoxes = new List<TextBox>();
         List<TextBox> rowTwoTextBoxes = new List<TextBox>();
         List<TextBox> rowThreeTextBoxes = new List<TextBox>();
         List<TextBox> rowFourTextBoxes = new List<TextBox>();
         List<TextBox> rowFiveTextBoxes = new List<TextBox>();
+
+        System.Timers.Timer alertTimer = new System.Timers.Timer();
 
         NetSpell.SpellChecker.Dictionary.WordDictionary oDict = new NetSpell.SpellChecker.Dictionary.WordDictionary();
         NetSpell.SpellChecker.Spelling oSpell = new NetSpell.SpellChecker.Spelling();
@@ -37,6 +45,10 @@ namespace wordle_clone
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Panel.CheckForIllegalCrossThreadCalls = false;
+
+            alertPanel.Hide();
+       
             oDict.DictionaryFile = "en-US.dic"; 
             oDict.Initialize();
 
@@ -46,10 +58,21 @@ namespace wordle_clone
             GenerateWord();
             UnlockRow();
 
-            label2.Text = correctWord.ToString();
- 
-
         }
+
+        private void HideAlertPanel(object sender, ElapsedEventArgs e)
+        {
+            alertPanel.Hide();
+            alertTimer.Stop();
+        }
+
+        private void StartHideTimer()
+        {
+            alertTimer.Interval = 3000;
+            alertTimer.Elapsed += HideAlertPanel;
+            alertTimer.Start();
+        }
+
         private void GenerateWord()
         {
             Random randomWord = new Random();
@@ -97,16 +120,11 @@ namespace wordle_clone
             foreach (Control control in this.Controls)
             {
                 if ((control is TextBox) && control.Tag.ToString() != row.ToString())
-                {
                     ((TextBox)control).Enabled = false;
-                }
 
                 if ((control is TextBox) && control.Tag.ToString() == row.ToString())
-                {
                     ((TextBox)control).Enabled = true;
-                }
                 
-
             }
         }
 
@@ -115,18 +133,15 @@ namespace wordle_clone
             foreach(Control control in this.Controls)
             {
                 if(control is TextBox)
-                {
                     ((TextBox)control).Text.ToUpper();
-                }
+                
             }
         }
 
         private void AssignCharactersToWord(List<TextBox> targetTextBox)
         {
             for (int i = 0; i < 5; i++)
-            {
-                guessedWord += targetTextBox[i].Text.ToString();
-            }
+                guessedWord += targetTextBox[i].Text.ToString();   
         }
 
         private string GetGuessedWord()
@@ -172,6 +187,9 @@ namespace wordle_clone
             {
                 if (correctWord.Contains(targetTextBox[i].Text) && targetTextBox[i].Text != correctWord[i].ToString())
                     targetTextBox[i].BackColor = Color.FromArgb(255, 179, 64);
+
+                if (!correctWord.Contains(targetTextBox[i].Text))
+                    targetTextBox[i].BackColor = Color.Crimson;
             }
         }
 
@@ -216,7 +234,7 @@ namespace wordle_clone
             for (int i = 0; i < 5; i++)
             {
                 if (targetTextBox[i].Text == correctWord[i].ToString())
-                    targetTextBox[i].BackColor = Color.Green;
+                    targetTextBox[i].BackColor = Color.FromArgb(23, 65, 113);
             }
         }
 
@@ -256,12 +274,27 @@ namespace wordle_clone
             }
         }
 
+        private void AlertContent(string content, Color color)
+        {
+            alertLabel.Text = content;
+            alertPictureBox.FillColor = color;
+            alertPanel.Show();
+        }
+
         private void checkButton_Click(object sender, EventArgs e)
         {
 
-            if (!oSpell.TestWord(GetGuessedWord()))
+            if(GetGuessedWord().Length < 5)
             {
-                MessageBox.Show("Word does not exist in our database :(");
+                AlertContent("Enter all 5 characters", Color.Crimson);
+                StartHideTimer();
+                return;
+            }
+
+            else if (!oSpell.TestWord(GetGuessedWord()))
+            {
+                AlertContent("Word does not exist in our database!", Color.Crimson);
+                StartHideTimer();
                 return;
             }
 
@@ -278,13 +311,60 @@ namespace wordle_clone
 
                 if (correctWord == GetGuessedWord())
                 {
-                    MessageBox.Show("You got it correctly!");
+                    AlertContent("You got it correctly!", Color.FromArgb(136, 212, 66));
+                    StartHideTimer();
                     return;
                 }
 
                 guessedWord = String.Empty;
                 currentRow++;
+
                 UnlockRow();
+            }
+
+        }
+
+        private void ClearRow(List<TextBox> targetTextBox)
+        {
+            for (int i = 0; i < 5; i++)
+                targetTextBox[i].Text = String.Empty;
+
+            guessedWord = String.Empty;
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            switch(currentRow)
+            {
+                case 1:
+                    {
+                        ClearRow(rowOneTextBoxes);
+                        break;
+                    }
+
+                case 2:
+                    {
+                        ClearRow(rowTwoTextBoxes);
+                        break;
+                    }
+
+                case 3:
+                    {
+                        ClearRow(rowThreeTextBoxes);
+                        break;
+                    }
+
+                case 4:
+                    {
+                        ClearRow(rowFourTextBoxes);
+                        break;
+                    }
+
+                case 5:
+                    {
+                        ClearRow(rowFiveTextBoxes);
+                        break;
+                    }
             }
 
         }
@@ -330,11 +410,6 @@ namespace wordle_clone
             rowFiveTextBoxes.Add(rowFiveLetterThree);
             rowFiveTextBoxes.Add(rowFiveLetterFour);
             rowFiveTextBoxes.Add(rowFiveLetterFive);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
