@@ -18,3 +18,7 @@ C:\Users\38762\source\repos\wordle_clone\wordle_clone\bin\Debug\Newtonsoft.Json.
 C:\Users\38762\source\repos\wordle_clone\wordle_clone\bin\Debug\NetSpell.SpellChecker.dll
 C:\Users\38762\source\repos\wordle_clone\wordle_clone\bin\Debug\NetSpell.SpellChecker.xml
 C:\Users\38762\source\repos\wordle_clone\wordle_clone\obj\Debug\wordle_clone.Wordle.resources
+C:\Users\38762\source\repos\wordle_clone\wordle_clone\bin\Debug\wordle_clone.exe.manifest
+C:\Users\38762\source\repos\wordle_clone\wordle_clone\bin\Debug\wordle_clone.application
+C:\Users\38762\source\repos\wordle_clone\wordle_clone\obj\Debug\wordle_clone.exe.manifest
+C:\Users\38762\source\repos\wordle_clone\wordle_clone\obj\Debug\wordle_clone.application

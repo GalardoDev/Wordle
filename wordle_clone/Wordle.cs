@@ -120,10 +120,16 @@ namespace wordle_clone
             foreach (Control control in this.Controls)
             {
                 if ((control is TextBox) && control.Tag.ToString() != row.ToString())
+                {
+                    //((TextBox)control).ReadOnly = true; // Since there is bug with forecolor of textbox in the case textbox is disabled, I had to do it this way.
                     ((TextBox)control).Enabled = false;
+                }
 
                 if ((control is TextBox) && control.Tag.ToString() == row.ToString())
+                {
+                    ((TextBox)control).ReadOnly = false;
                     ((TextBox)control).Enabled = true;
+                }
                 
             }
         }
@@ -146,6 +152,8 @@ namespace wordle_clone
 
         private string GetGuessedWord()
         {
+            guessedWord = String.Empty;
+
             switch(currentRow)
             {
                 case 1:
@@ -156,25 +164,25 @@ namespace wordle_clone
 
                 case 2:
                     {
-                        AssignCharactersToWord(rowOneTextBoxes);
+                        AssignCharactersToWord(rowTwoTextBoxes);
                         break;
                     }
 
                 case 3:
                     {
-                        AssignCharactersToWord(rowOneTextBoxes);
+                        AssignCharactersToWord(rowThreeTextBoxes);
                         break;
                     }
 
                 case 4:
                     {
-                        AssignCharactersToWord(rowOneTextBoxes);
+                        AssignCharactersToWord(rowFourTextBoxes);
                         break;
                     }
 
                 case 5:
                     {
-                        AssignCharactersToWord(rowOneTextBoxes);
+                        AssignCharactersToWord(rowFiveTextBoxes);
                         break;
                     }
             }
@@ -186,10 +194,16 @@ namespace wordle_clone
             for (int i = 0; i < 5; i++)
             {
                 if (correctWord.Contains(targetTextBox[i].Text) && targetTextBox[i].Text != correctWord[i].ToString())
-                    targetTextBox[i].BackColor = Color.FromArgb(255, 179, 64);
+                {
+                    targetTextBox[i].BackColor = Color.FromArgb(255, 179, 64); // does not work cuz of disabled textbox
+                    targetTextBox[i].ForeColor = Color.White;
+                }
 
                 if (!correctWord.Contains(targetTextBox[i].Text))
+                {
                     targetTextBox[i].BackColor = Color.Crimson;
+                    targetTextBox[i].ForeColor = Color.White; // does not work cuz of disabled textbox
+                }
             }
         }
 
@@ -234,7 +248,10 @@ namespace wordle_clone
             for (int i = 0; i < 5; i++)
             {
                 if (targetTextBox[i].Text == correctWord[i].ToString())
+                {
+                    targetTextBox[i].ForeColor = Color.White; // does not work cuz of disabled textbox
                     targetTextBox[i].BackColor = Color.FromArgb(23, 65, 113);
+                }
             }
         }
 
@@ -277,6 +294,7 @@ namespace wordle_clone
         private void AlertContent(string content, Color color)
         {
             alertLabel.Text = content;
+            alertLabel.BackColor = color;
             alertPictureBox.FillColor = color;
             alertPanel.Show();
         }
@@ -284,7 +302,7 @@ namespace wordle_clone
         private void checkButton_Click(object sender, EventArgs e)
         {
 
-            if(GetGuessedWord().Length < 5)
+            if (GetGuessedWord().Length != 5)
             {
                 AlertContent("Enter all 5 characters", Color.Crimson);
                 StartHideTimer();
@@ -302,25 +320,22 @@ namespace wordle_clone
             {
                 if (currentRow >= 1 && currentRow <= 5)
                 {
+
                     ConvertToUppercase();
                     CheckIncorrectCharacters();
                     CheckValidCharacters();
+
+                    if (correctWord == GetGuessedWord())
+                    {
+                        AlertContent("You got it correctly!", Color.FromArgb(136, 212, 66));
+                        StartHideTimer();
+                        return;
+                    }
                 }
-
-                guessedWord = String.Empty;
-
-                if (correctWord == GetGuessedWord())
-                {
-                    AlertContent("You got it correctly!", Color.FromArgb(136, 212, 66));
-                    StartHideTimer();
-                    return;
-                }
-
-                guessedWord = String.Empty;
-                currentRow++;
-
-                UnlockRow();
             }
+
+            currentRow++;
+            UnlockRow();
 
         }
 
@@ -330,6 +345,9 @@ namespace wordle_clone
                 targetTextBox[i].Text = String.Empty;
 
             guessedWord = String.Empty;
+
+            AlertContent("Row(s) has been cleared!", Color.FromArgb(136, 212, 66));
+            StartHideTimer();
         }
 
         private void resetButton_Click(object sender, EventArgs e)
@@ -367,6 +385,33 @@ namespace wordle_clone
                     }
             }
 
+        }
+
+        private void newGameButton_Click(object sender, EventArgs e)
+        {
+            foreach(Control control in this.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).ForeColor = Color.Black;
+                    ((TextBox)control).BackColor = Color.White;
+                    ((TextBox)control).Text = String.Empty;
+                }
+            }
+
+            currentRow = 1;
+
+            GenerateWord();
+            UnlockRow();
+
+            AlertContent("New game has started!", Color.FromArgb(136, 212, 66));
+            StartHideTimer();
+
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void AddRowsToList()
@@ -411,5 +456,6 @@ namespace wordle_clone
             rowFiveTextBoxes.Add(rowFiveLetterFour);
             rowFiveTextBoxes.Add(rowFiveLetterFive);
         }
+
     }
 }
