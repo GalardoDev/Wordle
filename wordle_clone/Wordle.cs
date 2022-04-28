@@ -19,9 +19,14 @@ namespace wordle_clone
         int currentRow = 1;
 
         string[] words = {
-            "Music", 
-            "House", 
-            "Horse"
+            "MUSIC", 
+            "HOUSE", 
+            "HORSE",
+            "UNCLE",
+            "TRUCK",
+            "MONTH",
+            "STEAL",
+            "PLANE"
         };
 
         string correctWord = String.Empty;
@@ -127,19 +132,9 @@ namespace wordle_clone
 
                 if ((control is TextBox) && control.Tag.ToString() == row.ToString())
                 {
-                    ((TextBox)control).ReadOnly = false;
+                    //((TextBox)control).ReadOnly = false; // Since there is bug with forecolor of textbox in the case textbox is disabled, I had to do it this way.
                     ((TextBox)control).Enabled = true;
                 }
-                
-            }
-        }
-
-        private void ConvertToUppercase()
-        {
-            foreach(Control control in this.Controls)
-            {
-                if(control is TextBox)
-                    ((TextBox)control).Text.ToUpper();
                 
             }
         }
@@ -147,7 +142,7 @@ namespace wordle_clone
         private void AssignCharactersToWord(List<TextBox> targetTextBox)
         {
             for (int i = 0; i < 5; i++)
-                guessedWord += targetTextBox[i].Text.ToString();   
+                guessedWord += targetTextBox[i].Text.ToString().ToUpper();   
         }
 
         private string GetGuessedWord()
@@ -193,16 +188,16 @@ namespace wordle_clone
         {
             for (int i = 0; i < 5; i++)
             {
-                if (correctWord.Contains(targetTextBox[i].Text) && targetTextBox[i].Text != correctWord[i].ToString())
+                if (correctWord.Contains(targetTextBox[i].Text.ToUpper()) && targetTextBox[i].Text.ToUpper() != correctWord[i].ToString())
                 {
-                    targetTextBox[i].BackColor = Color.FromArgb(255, 179, 64); // does not work cuz of disabled textbox
-                    targetTextBox[i].ForeColor = Color.White;
+                    targetTextBox[i].BackColor = Color.FromArgb(255, 179, 64);
+                    //targetTextBox[i].ForeColor = Color.White; // does not work cuz of disabled textbox
                 }
 
-                if (!correctWord.Contains(targetTextBox[i].Text))
+                if (!correctWord.Contains(targetTextBox[i].Text.ToUpper()))
                 {
                     targetTextBox[i].BackColor = Color.Crimson;
-                    targetTextBox[i].ForeColor = Color.White; // does not work cuz of disabled textbox
+                    //targetTextBox[i].ForeColor = Color.White; // does not work cuz of disabled textbox
                 }
             }
         }
@@ -247,9 +242,9 @@ namespace wordle_clone
         {
             for (int i = 0; i < 5; i++)
             {
-                if (targetTextBox[i].Text == correctWord[i].ToString())
+                if (targetTextBox[i].Text.ToUpper() == correctWord[i].ToString())
                 {
-                    targetTextBox[i].ForeColor = Color.White; // does not work cuz of disabled textbox
+                    targetTextBox[i].ForeColor = Color.White;
                     targetTextBox[i].BackColor = Color.FromArgb(23, 65, 113);
                 }
             }
@@ -321,7 +316,6 @@ namespace wordle_clone
                 if (currentRow >= 1 && currentRow <= 5)
                 {
 
-                    ConvertToUppercase();
                     CheckIncorrectCharacters();
                     CheckValidCharacters();
 
